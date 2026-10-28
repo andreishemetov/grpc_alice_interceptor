@@ -51,6 +51,8 @@ dart analyze
 cd example && flutter test
 ```
 
+Pull requests run the same checks via [GitHub Actions](.github/workflows/ci.yml). In branch protection, require the **analyze** status check.
+
 ## License
 
 MIT — see [LICENSE](LICENSE).
