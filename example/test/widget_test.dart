@@ -9,4 +9,8 @@ void main() {
   test('parseGrpcTarget accepts http URL', () {
     expect(parseGrpcTarget('http://10.0.2.2:50051'), (host: '10.0.2.2', port: 50051));
   });
+
+  test('defaultGrpcGatewayUrl uses loopback on VM tests', () {
+    expect(defaultGrpcGatewayUrl(), 'http://127.0.0.1:50051');
+  });
 }

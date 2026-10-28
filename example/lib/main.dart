@@ -1,5 +1,7 @@
 import 'dart:async';
+import 'dart:io' show Platform;
 
+import 'package:flutter/foundation.dart' show kIsWeb;
 import 'package:flutter/material.dart';
 import 'package:flutter_alice/alice.dart';
 import 'package:grpc/grpc.dart';
@@ -21,6 +23,39 @@ void main() {
   return (host: uri.host, port: uri.hasPort ? uri.port : 50051);
 }
 
+/// Host loopback that reaches the machine running [bin/server.dart].
+String defaultGrpcGatewayUrl() {
+  if (!kIsWeb && Platform.isAndroid) {
+    return 'http://10.0.2.2:50051';
+  }
+  return 'http://127.0.0.1:50051';
+}
+
+String grpcGatewayHelperText() {
+  if (!kIsWeb && Platform.isAndroid) {
+    return 'Android emulator: 10.0.2.2 is your Mac/PC (not 127.0.0.1)';
+  }
+  return 'iOS simulator / desktop: http://127.0.0.1:50051';
+}
+
+String formatGrpcConnectionError(Object error) {
+  final message = error.toString();
+  if (!kIsWeb &&
+      Platform.isAndroid &&
+      message.contains('127.0.0.1') &&
+      (message.toLowerCase().contains('connection') ||
+          message.toLowerCase().contains('failed'))) {
+    return '$message\n\nOn Android emulator use Gateway URL http://10.0.2.2:50051';
+  }
+  if (!kIsWeb &&
+      Platform.isAndroid &&
+      (message.toLowerCase().contains('connection refused') ||
+          message.toLowerCase().contains('error connecting'))) {
+    return '$message\n\nOn Android emulator use Gateway URL http://10.0.2.2:50051';
+  }
+  return message;
+}
+
 class ExampleApp extends StatefulWidget {
   const ExampleApp({super.key});
 
@@ -35,7 +70,7 @@ class _ExampleAppState extends State<ExampleApp> {
   GreeterClient? _greeter;
   ({String host, int port})? _target;
 
-  final _gatewayController = TextEditingController(text: 'http://127.0.0.1:50051');
+  final _gatewayController = TextEditingController(text: defaultGrpcGatewayUrl());
   final _nameController = TextEditingController(text: 'world');
   final _tokenController = TextEditingController(text: 'demo-token');
 
@@ -108,7 +143,7 @@ class _ExampleAppState extends State<ExampleApp> {
       if (!mounted) {
         return;
       }
-      setState(() => _lastError = error.toString());
+      setState(() => _lastError = formatGrpcConnectionError(error));
     } finally {
       if (mounted) {
         setState(() => _loading = false);
@@ -139,9 +174,9 @@ class _ExampleAppState extends State<ExampleApp> {
           children: [
             TextField(
               controller: _gatewayController,
-              decoration: const InputDecoration(
+              decoration: InputDecoration(
                 labelText: 'Gateway URL',
-                helperText: 'Use http://10.0.2.2:50051 on Android emulator',
+                helperText: grpcGatewayHelperText(),
               ),
               onSubmitted: (_) => _rebuildClient(),
             ),
