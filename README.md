@@ -2,7 +2,7 @@
 
 [`GrpcAliceInterceptor`](lib/src/grpc_alice_interceptor.dart) records unary gRPC calls in [flutter_alice](https://pub.dev/packages/flutter_alice) for the network inspector UI.
 
-Pair it with [`flutter_grpc_kit`](https://github.com/your-org/flutter_grpc_kit) or any app that uses `grpc` `ClientChannel` interceptors.
+Pair it with [`flutter_grpc_kit`](https://github.com/andreishemetov/flutter_grpc_kit) or any app that uses `grpc` `ClientChannel` interceptors.
 
 ## Install
 
@@ -49,15 +49,6 @@ final interceptors = [
 flutter pub get
 dart analyze
 cd example && flutter test
-```
-
-## Publish
-
-Replace `homepage` / `repository` in [`pubspec.yaml`](pubspec.yaml) with your Git URL, then:
-
-```bash
-dart pub publish --dry-run
-dart pub publish
 ```
 
 ## License

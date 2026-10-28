@@ -3,8 +3,9 @@ description: >-
   gRPC client interceptor that records unary calls in the flutter_alice
   network inspector.
 version: 0.1.0
-homepage: https://github.com/your-org/grpc_alice_interceptor
-repository: https://github.com/your-org/grpc_alice_interceptor
+homepage: https://github.com/andreishemetov/grpc_alice_interceptor
+repository: https://github.com/andreishemetov/grpc_alice_interceptor
+issue_tracker: https://github.com/andreishemetov/grpc_alice_interceptor/issues
 
 environment:
   sdk: ^3.10.0
