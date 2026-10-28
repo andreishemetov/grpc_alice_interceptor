@@ -4,6 +4,8 @@
 
 Pair it with [`flutter_grpc_kit`](https://github.com/andreishemetov/flutter_grpc_kit) or any app that uses `grpc` `ClientChannel` interceptors.
 
+Contributions welcome — see [CONTRIBUTING.md](CONTRIBUTING.md).
+
 ## Install
 
 ```yaml
@@ -18,6 +20,12 @@ For local development, use a path dependency to this repo.
 ## Example
 
 The [`example/`](example/) app runs a local Greeter server and shows captured calls in Alice:
+
+![Example app](doc/screenshots/example_app.png)
+
+Alice inspector listing captured unary gRPC calls (metadata keys such as `token` are masked):
+
+![Alice inspector](doc/screenshots/alice_inspector.png)
 
 ```bash
 cd example && dart run bin/server.dart   # terminal 1
@@ -51,7 +59,7 @@ dart analyze
 cd example && flutter test
 ```
 
-Pull requests run the same checks via [GitHub Actions](.github/workflows/ci.yml). In branch protection, require the **analyze** status check.
+Pull requests run the same checks via [GitHub Actions](.github/workflows/ci.yml). In branch protection, require **CI / analyze** (or **analyze**).
 
 ## License
 
