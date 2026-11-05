@@ -10,8 +10,8 @@ Contributions welcome — see [CONTRIBUTING.md](CONTRIBUTING.md).
 
 ```yaml
 dependencies:
-  grpc_alice_interceptor: ^0.1.0
-  flutter_alice: ^2.0.1
+  grpc_alice_interceptor: ^0.1.2
+  flutter_alice: ^3.0.0
   grpc: ^5.1.0
 ```
 

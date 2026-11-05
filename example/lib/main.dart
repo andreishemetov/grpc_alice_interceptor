@@ -16,7 +16,9 @@ void main() {
 /// Parses `http://host:port` or `host:port` for the local Greeter server.
 ({String host, int port}) parseGrpcTarget(String raw) {
   final trimmed = raw.trim();
-  final uri = Uri.tryParse(trimmed.contains('://') ? trimmed : 'http://$trimmed');
+  final uri = Uri.tryParse(
+    trimmed.contains('://') ? trimmed : 'http://$trimmed',
+  );
   if (uri == null || uri.host.isEmpty) {
     throw FormatException('Invalid gateway URL: $raw');
   }
@@ -64,13 +66,16 @@ class ExampleApp extends StatefulWidget {
 }
 
 class _ExampleAppState extends State<ExampleApp> {
+  final _navigatorKey = GlobalKey<NavigatorState>();
   late final Alice _alice;
 
   ClientChannel? _channel;
   GreeterClient? _greeter;
   ({String host, int port})? _target;
 
-  final _gatewayController = TextEditingController(text: defaultGrpcGatewayUrl());
+  final _gatewayController = TextEditingController(
+    text: defaultGrpcGatewayUrl(),
+  );
   final _nameController = TextEditingController(text: 'world');
   final _tokenController = TextEditingController(text: 'demo-token');
 
@@ -81,7 +86,7 @@ class _ExampleAppState extends State<ExampleApp> {
   @override
   void initState() {
     super.initState();
-    _alice = Alice(showInspectorOnShake: true);
+    _alice = Alice(navigatorKey: _navigatorKey);
     _rebuildClient();
   }
 
@@ -156,7 +161,7 @@ class _ExampleAppState extends State<ExampleApp> {
     final target = _target;
 
     return MaterialApp(
-      navigatorKey: _alice.getNavigatorKey(),
+      navigatorKey: _navigatorKey,
       title: 'grpc_alice_interceptor example',
       home: Scaffold(
         appBar: AppBar(
@@ -217,7 +222,7 @@ class _ExampleAppState extends State<ExampleApp> {
             const Text(
               'Start the sample server from the example folder:\n'
               'dart run bin/server.dart\n\n'
-              'Tap SayHello, then open Alice from the app bar (or shake on device). '
+              'Tap SayHello, then open Alice from the app bar. '
               'Sensitive metadata keys such as token are masked in the inspector.',
             ),
           ],

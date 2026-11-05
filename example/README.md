@@ -17,7 +17,7 @@ Flutter app that calls the standard gRPC **helloworld** `SayHello` RPC and recor
    flutter run
    ```
 
-3. Tap **SayHello**. Open the Alice inspector from the app bar (or shake on a physical device).
+3. Tap **SayHello**. Open the Alice inspector from the app bar.
 
 ### Gateway URL tips
 
