@@ -10,8 +10,8 @@ Contributions welcome — see [CONTRIBUTING.md](CONTRIBUTING.md).
 
 ```yaml
 dependencies:
-  grpc_alice_interceptor: ^0.1.0
-  flutter_alice: ^2.0.1
+  grpc_alice_interceptor: ^0.1.2
+  flutter_alice: ^3.0.0
   grpc: ^5.1.0
 ```
 
@@ -60,6 +60,10 @@ cd example && flutter test
 ```
 
 Pull requests run the same checks via [GitHub Actions](.github/workflows/ci.yml). In branch protection, require **CI / analyze** (or **analyze**).
+
+## Article
+
+For a detailed walkthrough and usage examples, read [Debugging gRPC requests in Flutter with Alice](https://ashemetau.vercel.app/articles/debugging-grpc-requests-in-flutter-with-alice) on my website or [on Medium](https://medium.com/@andrei.shemetau/debugging-grpc-requests-in-flutter-with-alice-eb44cdfa3675).
 
 ## License
 
