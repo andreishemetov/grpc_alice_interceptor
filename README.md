@@ -61,6 +61,10 @@ cd example && flutter test
 
 Pull requests run the same checks via [GitHub Actions](.github/workflows/ci.yml). In branch protection, require **CI / analyze** (or **analyze**).
 
+## Article
+
+For a detailed walkthrough and usage examples, read [Debugging gRPC requests in Flutter with Alice](https://ashemetau.vercel.app/articles/debugging-grpc-requests-in-flutter-with-alice) on my website or [on Medium](https://medium.com/@andrei.shemetau/debugging-grpc-requests-in-flutter-with-alice-eb44cdfa3675).
+
 ## License
 
 MIT — see [LICENSE](LICENSE).
